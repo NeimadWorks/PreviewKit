@@ -51,5 +51,15 @@ public enum PreviewKit {
         registry.register(IconRenderer.self)
         registry.register(MobileProvisionRenderer.self)
         registry.register(GPGRenderer.self)
+
+        // Addendum v3 — inherited from Canopy on extraction (2026-04).
+        // SQLite gets a real renderer (Canopy had app-fingerprinting via
+        // AppSignatureRegistry — Cairn's DataRenderer only listed it).
+        // Calendar / Contact / WebShortcut / AppBundle are net-new types.
+        registry.register(SQLiteRenderer.self)
+        registry.register(CalendarRenderer.self)
+        registry.register(ContactRenderer.self)
+        registry.register(WebShortcutRenderer.self)
+        registry.register(AppBundleRenderer.self)
     }
 }

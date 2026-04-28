@@ -47,6 +47,19 @@ public enum ArtifactKind: String, Sendable, CaseIterable, Hashable {
     case gpgSignature
     case gpgMessage
 
+    // MARK: Addendum v3 — kinds inherited from Canopy on PreviewKit
+    // extraction (2026-04). Each gets its dedicated specialist renderer.
+    /// Jupyter Notebook (.ipynb) — JSON envelope wrapping cells.
+    case jupyterNotebook
+    /// iCalendar (.ics, RFC 5545) — events, recurrences, attendees.
+    case iCalendar
+    /// vCard (.vcf, RFC 6350) — contacts.
+    case vCard
+    /// Web shortcut (.webloc, .url) — URL bookmark file.
+    case webShortcut
+    /// macOS app bundle (.app) — NSBundle-introspectable directory.
+    case appBundle
+
     // MARK: Group nodes (navigator-only — never rendered as a leaf)
     /// Cairn Collection — a recognizer-produced grouping of related
     /// artifacts (a photo burst, a source module, a document set).
@@ -147,6 +160,13 @@ public enum ArtifactKind: String, Sendable, CaseIterable, Hashable {
         case "asc":                                 return .gpgSignature
         case "gpg":                                 return .gpgMessage
 
+        // Addendum v3 — inherited from Canopy.
+        case "ipynb":                  return .jupyterNotebook
+        case "ics", "ical", "ifb":     return .iCalendar
+        case "vcf", "vcard":           return .vCard
+        case "webloc", "url":          return .webShortcut
+        case "app":                    return .appBundle
+
         default:
             return .binary
         }
@@ -245,6 +265,12 @@ public enum ArtifactKind: String, Sendable, CaseIterable, Hashable {
             return .code
         case .mobileProvision, .gpgSignature, .gpgMessage:
             return .system
+        case .jupyterNotebook:
+            return .code
+        case .iCalendar, .vCard, .webShortcut:
+            return .documents
+        case .appBundle:
+            return .system
         case .collection, .folder:
             return .data   // groups render in the Overview as a "data" family
         }
@@ -273,6 +299,11 @@ public enum ArtifactKind: String, Sendable, CaseIterable, Hashable {
         case .mobileProvision:  return "Provisioning Profile"
         case .gpgSignature:     return "PGP Signature"
         case .gpgMessage:       return "PGP Message"
+        case .jupyterNotebook:  return "Jupyter Notebook"
+        case .iCalendar:        return "iCalendar"
+        case .vCard:            return "vCard"
+        case .webShortcut:      return "Web Shortcut"
+        case .appBundle:        return "Application Bundle"
         default:             return rawValue.capitalized
         }
     }
@@ -319,6 +350,12 @@ public enum ArtifactKind: String, Sendable, CaseIterable, Hashable {
         case .mobileProvision:  return "lock.shield"
         case .gpgSignature:     return "signature"
         case .gpgMessage:       return "lock.doc"
+
+        case .jupyterNotebook:  return "function"
+        case .iCalendar:        return "calendar"
+        case .vCard:            return "person.crop.rectangle"
+        case .webShortcut:      return "link"
+        case .appBundle:        return "app"
 
         case .collection:       return "square.grid.2x2"
         case .folder:           return "folder"
