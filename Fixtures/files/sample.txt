@@ -1,0 +1,9 @@
+PreviewKit text fixture
+-----------------------
+A short plain-text file.
+
+Used by:
+  - the binary renderer fallback test
+  - generic text inspection tests
+
+Each renderer should treat this as ASCII / UTF-8 with line endings = LF.

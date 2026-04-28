@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyLists-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>AppIDName</key>          <string>PreviewKit Fixture</string>
+    <key>TeamName</key>            <string>NeimadWorks</string>
+    <key>TeamIdentifier</key>      <array><string>FIXTURE001</string></array>
+    <key>CreationDate</key>        <date>2026-04-29T12:00:00Z</date>
+    <key>ExpirationDate</key>      <date>2027-04-29T12:00:00Z</date>
+    <key>UUID</key>                <string>00000000-0000-0000-0000-FIXTURE0000</string>
+    <key>Version</key>             <integer>1</integer>
+</dict>
+</plist>

@@ -1,0 +1,11 @@
+name: PreviewKit
+version: 1.0.0
+platforms:
+  - macOS
+renderers:
+  documents:
+    - pdf
+    - markdown
+  code:
+    - swift
+    - python

@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Camille Dupont
+N:Dupont;Camille;;;
+ORG:Neimad
+TITLE:Engineer
+TEL;TYPE=CELL:+33 6 12 34 56 78
+TEL;TYPE=WORK:+33 1 23 45 67 89
+EMAIL;TYPE=WORK:camille@neimad.fr
+EMAIL;TYPE=HOME:camille@example.com
+ADR;TYPE=WORK:;;42 rue de la Paix;Paris;;75002;France
+END:VCARD

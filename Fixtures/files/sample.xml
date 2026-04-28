@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<previewkit>
+    <name>PreviewKit</name>
+    <version>1.0.0</version>
+    <renderers>
+        <renderer kind="pdf"/>
+        <renderer kind="markdown"/>
+        <renderer kind="sqlite"/>
+    </renderers>
+</previewkit>

@@ -1,0 +1,12 @@
+{
+  "name": "PreviewKit",
+  "version": "1.0.0",
+  "platforms": ["macOS"],
+  "supported_kinds": 30,
+  "renderers": {
+    "documents": ["pdf", "markdown", "office"],
+    "code": ["swift", "python", "typescript"],
+    "data": ["json", "yaml", "csv", "sqlite"]
+  },
+  "active": true
+}

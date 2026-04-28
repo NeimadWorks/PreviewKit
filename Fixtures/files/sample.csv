@@ -1,0 +1,6 @@
+name,kind,priority,active
+PDF,document,0,true
+SourceCode,code,0,true
+SQLite,data,0,true
+Calendar,document,0,true
+Contact,document,0,true

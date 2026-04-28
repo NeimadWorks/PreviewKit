@@ -1,0 +1,12 @@
+diff --git a/sample.swift b/sample.swift
+index abc1234..def5678 100644
+--- a/sample.swift
++++ b/sample.swift
+@@ -1,5 +1,6 @@
+ import Foundation
+
++// New imports
+ public struct PreviewID: Hashable {
+-    public let raw: String
++    public let raw: String  // now stable
+ }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyLists-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>BundleName</key><string>PreviewKit</string>
+    <key>Version</key><string>1.0.0</string>
+    <key>SupportedKinds</key><integer>30</integer>
+    <key>Active</key><true/>
+</dict>
+</plist>
