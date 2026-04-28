@@ -31,12 +31,10 @@ private struct BinaryRendererBody: View {
     let url: URL?
 
     var body: some View {
-        HSplitView {
+        ResponsiveSplit {
             renderPane
-                .frame(minWidth: PreviewTokens.rendererMinWidth)
+        } inspector: {
             inspectorPane
-                .frame(minWidth: PreviewTokens.inspectorMinWidth,
-                       idealWidth: PreviewTokens.inspectorIdealWidth)
         }
     }
 

@@ -41,12 +41,10 @@ private struct SourceCodeRendererBody: View {
     }
 
     var body: some View {
-        HSplitView {
+        ResponsiveSplit {
             leftPane
-                .frame(minWidth: PreviewTokens.rendererMinWidth)
+        } inspector: {
             inspectorPane
-                .frame(minWidth: PreviewTokens.inspectorMinWidth,
-                       idealWidth: PreviewTokens.inspectorIdealWidth)
         }
         .task(id: item.id) { await load() }
     }

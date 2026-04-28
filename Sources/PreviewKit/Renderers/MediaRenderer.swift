@@ -1,7 +1,13 @@
 // MediaRenderer — video + audio.
 //
 // Video: AVPlayer-backed view + 8-frame thumbnail strip.
-// Audio: cover art (if present) or WaveformView + playback controls.
+// Audio: cover art (if present) or WaveformView + KPIs. NO inline
+// AVKit playback view — AVKit_SwiftUI's `VideoPlayer` triggered a
+// `getSuperclassMetadata` crash on macOS 26 in host apps that didn't
+// link AVKit_SwiftUI eagerly (observed in Canopy 2026-04). Audio
+// playback is deferred to QuickLook (Space) until we can wrap a
+// minimal NSViewRepresentable around AVPlayerView with stable
+// metadata at host link time.
 // Both flavours share the right-pane KPI / tag / CairnMeta layout.
 
 import SwiftUI
@@ -37,12 +43,10 @@ private struct MediaRendererBody: View {
     @State private var loadError: String?
 
     var body: some View {
-        HSplitView {
+        ResponsiveSplit {
             leftPane
-                .frame(minWidth: PreviewTokens.rendererMinWidth)
+        } inspector: {
             inspectorPane
-                .frame(minWidth: PreviewTokens.inspectorMinWidth,
-                       idealWidth: PreviewTokens.inspectorIdealWidth)
         }
         .task(id: item.id) { await load() }
         .onDisappear { cleanupTemp() }
@@ -59,16 +63,14 @@ private struct MediaRendererBody: View {
                 symbol: "exclamationmark.triangle"
             )
             .padding(24)
-        } else if let player {
-            if item.kind == .video {
-                VStack(spacing: 0) {
-                    VideoPlayer(player: player)
-                        .frame(maxHeight: .infinity)
-                    videoThumbnailStrip
-                }
-            } else {
-                audioPane(player: player)
+        } else if item.kind == .video, let player {
+            VStack(spacing: 0) {
+                VideoPlayer(player: player)
+                    .frame(maxHeight: .infinity)
+                videoThumbnailStrip
             }
+        } else if item.kind == .audio {
+            audioPane()
         } else {
             ProgressView("Preparing player…")
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -94,7 +96,7 @@ private struct MediaRendererBody: View {
     }
 
     @ViewBuilder
-    private func audioPane(player: AVPlayer) -> some View {
+    private func audioPane() -> some View {
         VStack(spacing: 16) {
             if let coverArt {
                 Image(nsImage: coverArt)
@@ -108,11 +110,18 @@ private struct MediaRendererBody: View {
                     .frame(height: 160)
                     .padding(.horizontal, 24)
                     .padding(.top, 24)
+            } else {
+                Image(systemName: "waveform")
+                    .font(.system(size: 64, weight: .light))
+                    .foregroundStyle(PreviewTokens.textMuted)
+                    .padding(.top, 60)
             }
             Spacer()
-            VideoPlayer(player: player)
-                .frame(height: 44)   // audio-only → just the transport bar
-                .padding(.horizontal, 16)
+            // Inline playback intentionally omitted — see file header.
+            // Press Space (Quick Look) for OS-level playback.
+            Text("\u{2423}")  // ␣ — Quick Look hint
+                .font(PreviewTokens.fontLabel)
+                .foregroundStyle(PreviewTokens.textMuted)
                 .padding(.bottom, 16)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -253,22 +262,27 @@ private struct MediaRendererBody: View {
         }
         self.resolvedURL = resolved
 
-        let asset = AVURLAsset(url: resolved)
-        let playerItem = AVPlayerItem(asset: asset)
-        self.player = AVPlayer(playerItem: playerItem)
-
         // Kick async metadata + frame/waveform pulls in parallel.
+        // For video we eagerly create AVPlayer because the inline VideoPlayer
+        // shows it. For audio we don't — see the file header note.
         async let s = MediaAnalyzer.stats(at: resolved)
         if item.kind == .video {
+            let asset = AVURLAsset(url: resolved)
+            self.player = AVPlayer(playerItem: AVPlayerItem(asset: asset))
             async let t = MediaAnalyzer.videoThumbnails(at: resolved, count: 8)
             self.stats = await s
             self.thumbnails = await t
         } else {
+            // Cover-art lookup uses AVURLAsset.load(.commonMetadata) — cheap
+            // and synchronous, no AVAssetReader / CoreAudio init.
             async let c = MediaAnalyzer.coverArt(at: resolved)
-            async let w = MediaAnalyzer.waveformSamples(at: resolved, count: 800)
             self.stats = await s
             self.coverArt = await c
-            self.waveform = await w
+            // Waveform pulls in AVAssetReader → CoreAudio → mic-TCC preflight.
+            // Do it last and only when we have no cover art to display.
+            if self.coverArt == nil {
+                self.waveform = await MediaAnalyzer.waveformSamples(at: resolved, count: 800)
+            }
         }
     }
 

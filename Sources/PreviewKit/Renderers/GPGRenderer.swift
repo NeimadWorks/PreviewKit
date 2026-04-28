@@ -37,12 +37,10 @@ private struct GPGRendererBody: View {
     }
 
     var body: some View {
-        HSplitView {
+        ResponsiveSplit {
             renderPane
-                .frame(minWidth: PreviewTokens.rendererMinWidth)
+        } inspector: {
             inspectorPane
-                .frame(minWidth: PreviewTokens.inspectorMinWidth,
-                       idealWidth: PreviewTokens.inspectorIdealWidth)
         }
     }
 
