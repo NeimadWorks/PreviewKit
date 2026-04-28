@@ -1,0 +1,57 @@
+Cairn Source-Available License — v1
+
+Copyright (c) 2026 NeimadWorks. All rights reserved.
+
+This license governs the use of the Cairn source code in this repository.
+
+1. Grant of Use
+
+   You are granted a worldwide, royalty-free, non-exclusive license to:
+
+   a. View, read, and study the source code for any purpose.
+   b. Fork, modify, and redistribute the source code for non-commercial
+      purposes, including personal, academic, and internal evaluation use.
+   c. Submit contributions back to the canonical upstream repository,
+      subject to the contributor agreement in CONTRIBUTING.md (when present).
+
+2. Commercial Use
+
+   Commercial use of the Cairn software — defined as use by a for-profit
+   entity, use in support of a commercial product, or distribution of
+   binaries in exchange for payment — requires a separately-issued commercial
+   license (Cairn Pro or Cairn Team tier). See PROJECT-BIBLE.md §9 or
+   contact NeimadWorks for licensing.
+
+3. Restrictions
+
+   a. You may not remove or obscure copyright, trademark, or authorship
+      notices.
+   b. You may not offer a hosted or Software-as-a-Service variant of Cairn
+      without a Team-tier commercial license.
+   c. You may not use the name "Cairn", "NeimadWorks", or associated marks
+      to endorse or promote derived works without written permission.
+
+4. No Warranty
+
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL
+   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR
+   OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE,
+   ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+   OTHER DEALINGS IN THE SOFTWARE.
+
+5. Vendored Third-Party Components
+
+   Files under Vendor/ retain their original licenses:
+   - Vendor/zstd/       — BSD-3-Clause / GPL-2.0 (Facebook / Meta)
+   - Vendor/libjxl/     — BSD-3-Clause (JPEG XL Project)
+   - Vendor/blake3/     — CC0-1.0 / Apache-2.0 (BLAKE3 Team)
+
+   These licenses apply only to their respective files and are not affected
+   by this license.
+
+---
+
+For the current list of commercial tiers and pricing, see PROJECT-BIBLE.md §9
+or visit https://cairn.neimad.works (when published).
