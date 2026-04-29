@@ -1,70 +1,65 @@
-// ResponsiveSplit — adaptive container that swaps between side-by-side
-// (wide host) and stacked-vertical (narrow host).
+// ResponsiveSplit — stable single-column container that stacks the
+// preview (left) on top of the inspector pane (right).
 //
-// Why this exists: PreviewKit renderers were originally designed for
-// `PreviewSplitView`, which gives them ~800 px to play with — leftPane
-// 420 px (preview) + inspectorPane 320 px (KPIs / badges / outline).
-// When a host like Canopy embeds a renderer into a narrow Zone-A hero
-// card (~300-700 px), an internal `HSplitView` clamps both panes below
-// their minimums and content gets clipped or hidden entirely.
+// Why this exists: PreviewKit renderers were originally a Cairn
+// invention with an internal `HSplitView` (preview pane | inspector
+// pane), under the assumption they'd always live inside Cairn's
+// `PreviewSplitView` which itself supplies a 800+ px column. When
+// embedded in a narrower host (Canopy's inspector hero card,
+// hover popover, drawer panel...), the side-by-side layout
+// clamps below its minimums and silently clips content.
 //
-// Implementation: `ViewThatFits` first proposes the wide HSplitView
-// (with its declared min widths). If the host can't satisfy those, it
-// falls back to a vertical stack: preview on top (capped height so
-// the inspector still has room), inspector below. The user sees both
-// the rendered content AND the metadata in any width — narrow hosts
-// just lose the side-by-side layout, not the data.
+// Earlier attempts used `ViewThatFits` to swap between HSplitView
+// and a vertical stack. That caused visible flicker because
+// renderer content sizes change asynchronously during load
+// (PDF document, image dimensions, audio waveform, etc.) — each
+// resize made `ViewThatFits` re-evaluate which branch fits and
+// occasionally flip back, producing a blink.
 //
-// `ViewThatFits` is reliable inside a ScrollView because, unlike
-// GeometryReader, it doesn't collapse to zero height when the parent
-// has unspecified height — it propagates child intrinsic sizes.
+// Current strategy: ALWAYS render as a single vertical column.
+// The preview content goes on top (fills available width, capped
+// height to give the inspector room), the inspector content
+// scrolls below. Cairn's `PreviewSplitView` already wraps the
+// renderer in its own outer split (navigator | renderer column),
+// so renderers don't need a third-level horizontal split.
+//
+// Hosts that want a true side-by-side layout (e.g. a future
+// "wide PDF reader" mode) can call HSplitView directly around the
+// renderer body — but that's a host concern, not a renderer one.
 
 import SwiftUI
 
 public struct ResponsiveSplit<Left: View, Inspector: View>: View {
 
-    /// Maximum height reserved for the preview (left) pane in the
-    /// narrow / vertical fallback. Tuned so the inspector pane still
-    /// has room to surface its KPIs and outline below the preview.
-    public let narrowPreviewHeight: CGFloat
+    /// Maximum height reserved for the preview (left) pane. Tuned so
+    /// the inspector below it still has visible room for KPIs and
+    /// outline. Renderers with naturally tall content (PDF, source
+    /// code) will scroll within this height; renderers with short
+    /// content (icon, mobileprovision header) won't fill it.
+    public let previewHeight: CGFloat
 
     @ViewBuilder public let left: () -> Left
     @ViewBuilder public let inspector: () -> Inspector
 
     public init(
-        narrowPreviewHeight: CGFloat = 380,
+        previewHeight: CGFloat = 380,
         @ViewBuilder left: @escaping () -> Left,
         @ViewBuilder inspector: @escaping () -> Inspector
     ) {
-        self.narrowPreviewHeight = narrowPreviewHeight
+        self.previewHeight = previewHeight
         self.left = left
         self.inspector = inspector
     }
 
     public var body: some View {
-        ViewThatFits(in: .horizontal) {
-
-            // Wide path — original Cairn-style side-by-side.
-            HSplitView {
-                left()
-                    .frame(minWidth: PreviewTokens.rendererMinWidth)
-                inspector()
-                    .frame(minWidth: PreviewTokens.inspectorMinWidth,
-                           idealWidth: PreviewTokens.inspectorIdealWidth)
-            }
-
-            // Narrow fallback — vertical stack. Preview gets a fixed
-            // height so the inspector below still surfaces its content.
-            // Both panes remain visible regardless of host width.
-            VStack(spacing: 0) {
-                left()
-                    .frame(maxWidth: .infinity)
-                    .frame(height: narrowPreviewHeight)
-                    .clipped()
-                Divider()
-                inspector()
-                    .frame(maxWidth: .infinity)
-            }
+        VStack(spacing: 0) {
+            left()
+                .frame(maxWidth: .infinity)
+                .frame(height: previewHeight)
+                .clipped()
+            Divider()
+            inspector()
+                .frame(maxWidth: .infinity)
         }
     }
 }

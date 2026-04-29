@@ -11,6 +11,7 @@ import PackageDescription
 
 let package = Package(
     name: "PreviewKit",
+    defaultLocalization: "en",
     platforms: [
         .macOS(.v14)
     ],
@@ -21,7 +22,11 @@ let package = Package(
         .target(
             name: "PreviewKit",
             dependencies: [],
-            path: "Sources/PreviewKit"
+            path: "Sources/PreviewKit",
+            resources: [
+                .process("Resources/en.lproj"),
+                .process("Resources/fr.lproj"),
+            ]
         ),
         .testTarget(
             name: "PreviewKitTests",

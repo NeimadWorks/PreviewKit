@@ -191,4 +191,17 @@ extension Color {
             opacity: opacity
         )
     }
+
+    /// String-form `Color(hex: "#RRGGBB")` overload, used by registry
+    /// entries that store colors as text. Falls back to `.gray` on
+    /// malformed input rather than trapping.
+    init(hex: String, opacity: Double = 1) {
+        var s = hex.trimmingCharacters(in: .whitespacesAndNewlines)
+        if s.hasPrefix("#") { s.removeFirst() }
+        guard s.count == 6, let n = UInt32(s, radix: 16) else {
+            self = .gray
+            return
+        }
+        self.init(hex: n, opacity: opacity)
+    }
 }

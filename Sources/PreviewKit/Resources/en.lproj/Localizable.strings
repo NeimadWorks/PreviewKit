@@ -1,0 +1,160 @@
+/* PreviewKit — English (en) localization.
+
+   Keys are organized by namespace. Renderers read via
+   `PKL10n.<Namespace>.<key>` (typed wrapper) which falls through to
+   `String(localized: ..., bundle: .module)`. The host application's
+   preferred locale picks the matching .lproj at runtime — no host
+   configuration required.
+
+   When adding a new key:
+   1. Add it here.
+   2. Add the matching translation in every other lproj/.strings.
+   3. Surface it through the typed `PKL10n` enum so renderers don't
+      stringly-type the key path.
+*/
+
+/* MARK: - Common */
+"common.loading"            = "Loading…";
+"common.unavailable"        = "Unavailable";
+"common.modified"           = "Modified";
+"common.created"            = "Created";
+"common.size"               = "Size";
+
+/* MARK: - KPI labels */
+"kpi.lines"                 = "Lines";
+"kpi.functions"             = "Functions";
+"kpi.types"                 = "Types";
+"kpi.todos"                 = "TODOs";
+"kpi.imports"               = "Imports";
+"kpi.tests"                 = "Tests";
+"kpi.words"                 = "Words";
+"kpi.paragraphs"            = "Paragraphs";
+"kpi.changes"               = "Changes";
+"kpi.comments"              = "Comments";
+"kpi.pages"                 = "Pages";
+"kpi.images"                = "Images";
+"kpi.tables"                = "Tables";
+"kpi.sheets"                = "Sheets";
+"kpi.rows"                  = "Rows";
+"kpi.columns"               = "Columns";
+"kpi.formulas"              = "Formulas";
+"kpi.named_ranges"          = "Named ranges";
+"kpi.slides"                = "Slides";
+"kpi.slide_layouts"         = "Layouts";
+"kpi.duration"              = "Duration";
+"kpi.codec"                 = "Codec";
+"kpi.sample_rate"           = "Sample rate";
+"kpi.bit_depth"             = "Bit depth";
+"kpi.resolution"            = "Resolution";
+"kpi.fps"                   = "FPS";
+"kpi.indexes"               = "Indexes";
+"kpi.estimated_rows"        = "Est. rows";
+"kpi.journal"               = "Journal";
+"kpi.version"               = "Version";
+"kpi.build"                 = "Build";
+"kpi.min_macos"             = "min macOS";
+"kpi.architecture"          = "Arch";
+"kpi.entries"               = "Entries";
+"kpi.compressed"            = "Compressed";
+"kpi.glyphs"                = "Glyphs";
+"kpi.weight"                = "Weight";
+"kpi.encoding"              = "Encoding";
+"kpi.gps"                   = "GPS";
+
+/* MARK: - Section titles */
+"section.schema"            = "Schema";
+"section.outline"           = "Outline";
+"section.structure"         = "Structure";
+"section.preview"           = "Preview";
+"section.attendees"         = "Attendees";
+"section.phones"            = "Phones";
+"section.emails"            = "Emails";
+"section.addresses"         = "Addresses";
+"section.frameworks"        = "Frameworks";
+"section.metadata"          = "Metadata";
+"section.history"           = "History";
+"section.security"          = "Security";
+"section.dependencies"      = "Dependencies";
+"section.health"            = "Health";
+"section.identity"          = "Identity";
+"section.exif"              = "EXIF";
+"section.location"          = "Location";
+"section.histogram"         = "Histogram";
+
+/* MARK: - Badges */
+"badge.macros"              = "Macros";
+"badge.tracked_changes"     = "Tracked changes";
+"badge.has_speaker_notes"   = "Speaker notes";
+"badge.wal"                 = "WAL";
+"badge.integrity_ok"        = "Integrity OK";
+"badge.corrupted"           = "Corrupted";
+"badge.sandboxed"           = "Sandboxed";
+"badge.hardened"            = "Hardened Runtime";
+"badge.notarized"           = "Notarized";
+"badge.universal"           = "Universal";
+"badge.https"               = "HTTPS";
+"badge.http"                = "HTTP";
+"badge.ip_host"             = "IP host";
+"badge.tracking"            = "Tracking";
+"badge.reminder"            = "Reminder";
+"badge.video_call"          = "Video call";
+"badge.recurring"           = "Recurring";
+"badge.encrypted"           = "Encrypted";
+"badge.has_alpha"           = "Alpha";
+"badge.hdr"                 = "HDR";
+"badge.animated"            = "Animated";
+"badge.large"               = "Large";
+
+/* MARK: - Renderer-specific labels */
+"image.profile.photo"       = "Photo";
+"image.profile.screenshot"  = "Screenshot";
+"image.profile.icon"        = "Icon";
+"image.profile.illustration" = "Illustration";
+"image.no_exif"             = "No EXIF metadata";
+"image.no_gps"              = "No GPS data";
+
+"contact.no_name"           = "(no name)";
+"contact.contact_n_of_m"    = "Contact %1$d / %2$d";
+
+"calendar.no_title"         = "(no title)";
+"calendar.event_n_of_m"     = "Event %1$d / %2$d";
+
+"webshortcut.no_host"       = "(no host)";
+"webshortcut.without_tracking" = "Without tracking";
+
+"sqlite.detected_app"       = "Detected application";
+"sqlite.database_size"      = "Database size";
+"sqlite.bundle_id"          = "Bundle";
+"sqlite.encoding"           = "Encoding";
+
+"directory.spectrum"        = "Composition";
+"directory.biggest"         = "Largest files";
+"directory.most_recent"     = "Most recent";
+"directory.subfolders"      = "Subfolders";
+
+"binary.magic_bytes"        = "Magic bytes";
+"binary.entropy"            = "Entropy";
+"binary.misnamed"           = "Possible mismatch";
+
+"app.copyright"             = "Copyright";
+"app.bundle_id"             = "Bundle";
+"app.frameworks_more"       = "+%d more";
+
+"jupyter.kernel"            = "Kernel";
+"jupyter.cells_code"        = "Code cells";
+"jupyter.cells_markdown"    = "Markdown cells";
+"jupyter.libraries"         = "Libraries";
+
+"source.density"            = "Density";
+"source.role.test"          = "Test";
+"source.role.ui"            = "View";
+"source.role.model"         = "Model";
+"source.role.service"       = "Service";
+"source.role.config"        = "Config";
+"source.role.entrypoint"    = "Entry point";
+"source.role.extension"     = "Extension";
+"source.role.script"        = "Script";
+"source.complex"            = "Complex";
+
+"office.no_metadata"        = "This format doesn't expose machine-readable metadata.";
+"office.last_modified_by"   = "Last modified by";

@@ -1,0 +1,147 @@
+/* PreviewKit — Français (fr) localization. */
+
+/* MARK: - Common */
+"common.loading"            = "Chargement…";
+"common.unavailable"        = "Indisponible";
+"common.modified"           = "Modifié";
+"common.created"            = "Créé";
+"common.size"               = "Taille";
+
+/* MARK: - KPI labels */
+"kpi.lines"                 = "Lignes";
+"kpi.functions"             = "Fonctions";
+"kpi.types"                 = "Types";
+"kpi.todos"                 = "TODOs";
+"kpi.imports"               = "Imports";
+"kpi.tests"                 = "Tests";
+"kpi.words"                 = "Mots";
+"kpi.paragraphs"            = "Paragraphes";
+"kpi.changes"               = "Modifications";
+"kpi.comments"              = "Commentaires";
+"kpi.pages"                 = "Pages";
+"kpi.images"                = "Images";
+"kpi.tables"                = "Tableaux";
+"kpi.sheets"                = "Feuilles";
+"kpi.rows"                  = "Lignes";
+"kpi.columns"               = "Colonnes";
+"kpi.formulas"              = "Formules";
+"kpi.named_ranges"          = "Plages nommées";
+"kpi.slides"                = "Diapositives";
+"kpi.slide_layouts"         = "Modèles";
+"kpi.duration"              = "Durée";
+"kpi.codec"                 = "Codec";
+"kpi.sample_rate"           = "Fréquence";
+"kpi.bit_depth"             = "Profondeur";
+"kpi.resolution"            = "Résolution";
+"kpi.fps"                   = "FPS";
+"kpi.indexes"               = "Index";
+"kpi.estimated_rows"        = "Lignes (est.)";
+"kpi.journal"               = "Journal";
+"kpi.version"               = "Version";
+"kpi.build"                 = "Build";
+"kpi.min_macos"             = "macOS min.";
+"kpi.architecture"          = "Architecture";
+"kpi.entries"               = "Entrées";
+"kpi.compressed"            = "Compressé";
+"kpi.glyphs"                = "Glyphes";
+"kpi.weight"                = "Graisse";
+"kpi.encoding"              = "Encodage";
+"kpi.gps"                   = "GPS";
+
+/* MARK: - Section titles */
+"section.schema"            = "Schéma";
+"section.outline"           = "Plan";
+"section.structure"         = "Structure";
+"section.preview"           = "Aperçu";
+"section.attendees"         = "Participants";
+"section.phones"            = "Téléphones";
+"section.emails"            = "Emails";
+"section.addresses"         = "Adresses";
+"section.frameworks"        = "Frameworks";
+"section.metadata"          = "Métadonnées";
+"section.history"           = "Historique";
+"section.security"          = "Sécurité";
+"section.dependencies"      = "Dépendances";
+"section.health"            = "Santé";
+"section.identity"          = "Identité";
+"section.exif"              = "EXIF";
+"section.location"          = "Localisation";
+"section.histogram"         = "Histogramme";
+
+/* MARK: - Badges */
+"badge.macros"              = "Macros";
+"badge.tracked_changes"     = "Suivi des modifications";
+"badge.has_speaker_notes"   = "Notes du présentateur";
+"badge.wal"                 = "WAL";
+"badge.integrity_ok"        = "Intégrité OK";
+"badge.corrupted"           = "Corrompu";
+"badge.sandboxed"           = "Sandboxé";
+"badge.hardened"            = "Hardened Runtime";
+"badge.notarized"           = "Notarisé";
+"badge.universal"           = "Universel";
+"badge.https"               = "HTTPS";
+"badge.http"                = "HTTP";
+"badge.ip_host"             = "Hôte IP";
+"badge.tracking"            = "Tracking";
+"badge.reminder"            = "Rappel";
+"badge.video_call"          = "Visio";
+"badge.recurring"           = "Récurrent";
+"badge.encrypted"           = "Chiffré";
+"badge.has_alpha"           = "Alpha";
+"badge.hdr"                 = "HDR";
+"badge.animated"            = "Animé";
+"badge.large"               = "Volumineux";
+
+/* MARK: - Renderer-specific labels */
+"image.profile.photo"       = "Photo";
+"image.profile.screenshot"  = "Capture d'écran";
+"image.profile.icon"        = "Icône";
+"image.profile.illustration" = "Illustration";
+"image.no_exif"             = "Aucune métadonnée EXIF";
+"image.no_gps"              = "Aucune position GPS";
+
+"contact.no_name"           = "(sans nom)";
+"contact.contact_n_of_m"    = "Contact %1$d / %2$d";
+
+"calendar.no_title"         = "(sans titre)";
+"calendar.event_n_of_m"     = "Événement %1$d / %2$d";
+
+"webshortcut.no_host"       = "(sans hôte)";
+"webshortcut.without_tracking" = "Sans tracking";
+
+"sqlite.detected_app"       = "Application détectée";
+"sqlite.database_size"      = "Taille de la base";
+"sqlite.bundle_id"          = "Bundle";
+"sqlite.encoding"           = "Encodage";
+
+"directory.spectrum"        = "Composition";
+"directory.biggest"         = "Plus gros fichiers";
+"directory.most_recent"     = "Plus récent";
+"directory.subfolders"      = "Sous-dossiers";
+
+"binary.magic_bytes"        = "Magic bytes";
+"binary.entropy"            = "Entropie";
+"binary.misnamed"           = "Extension probablement incorrecte";
+
+"app.copyright"             = "Copyright";
+"app.bundle_id"             = "Bundle";
+"app.frameworks_more"       = "+%d autres";
+
+"jupyter.kernel"            = "Noyau";
+"jupyter.cells_code"        = "Cellules de code";
+"jupyter.cells_markdown"    = "Cellules Markdown";
+"jupyter.libraries"         = "Bibliothèques";
+
+"source.density"            = "Densité";
+"source.role.test"          = "Test";
+"source.role.ui"            = "Vue";
+"source.role.model"         = "Modèle";
+"source.role.service"       = "Service";
+"source.role.config"        = "Configuration";
+"source.role.entrypoint"    = "Point d'entrée";
+"source.role.extension"     = "Extension";
+"source.role.script"        = "Script";
+"source.complex"            = "Complexe";
+
+"office.no_metadata"        = "Ce format n'expose pas de métadonnées lisibles automatiquement.";
+"office.last_modified_by"   = "Dernière modification";
